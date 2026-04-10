@@ -3,8 +3,8 @@ require('dotenv').config();
 
 const pool = mysql.createPool(
   process.env.DATABASE_URL
-    ? process.env.DATABASE_URL          // Railway pe yeh use hoga
-    : {                                  // Local pe yeh use hoga
+    ? process.env.DATABASE_URL
+    : {
         host: process.env.DB_HOST || 'localhost',
         user: process.env.DB_USER || 'root',
         password: process.env.DB_PASSWORD || '',
@@ -15,7 +15,10 @@ const pool = mysql.createPool(
 const db = pool.promise();
 
 pool.getConnection((err, connection) => {
-  if (err) { console.error('MySQL connection failed:', err.message); return; }
+  if (err) {
+    console.error('MySQL connection failed:', err.message);
+    return;
+  }
   console.log('MySQL Connected');
   connection.release();
 });
