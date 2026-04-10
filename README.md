@@ -28,7 +28,7 @@ smart-booking-complete/
 │
 └── chatbot/               # Python FastAPI chatbot
     ├── app.py             # FastAPI server
-    ├── chatbot_logic.py   # Rule-based + Anthropic AI responses
+    ├── chatbot_logic.py   # Rule-based + Gemini AI responses
     └── requirements.txt
 ```
 
@@ -44,7 +44,7 @@ smart-booking-complete/
 | Auth       | JWT (jsonwebtoken) + bcryptjs       |
 | Images     | Cloudinary (provider service photos)|
 | Real-time  | Socket.io (notifications)           |
-| Chatbot    | Python FastAPI + Anthropic Claude   |
+| Chatbot    | Python FastAPI + Gemini Ai   |
 | Styling    | Custom CSS (dark luxury theme)      |
 
 ---
@@ -55,7 +55,6 @@ smart-booking-complete/
 - MySQL 8+
 - Python 3.9+
 - A free [Cloudinary](https://cloudinary.com) account
-- (Optional) An [Anthropic API key](https://console.anthropic.com) for AI chatbot
 
 ---
 
@@ -67,10 +66,6 @@ smart-booking-complete/
 # Login to MySQL and create the database
 mysql -u root -p < backend/schema.sql
 ```
-
-This creates all tables and inserts a default admin user:
-- **Email:** `admin@smartbooking.com`
-- **Password:** `admin123`
 
 ---
 
@@ -140,7 +135,7 @@ source venv/bin/activate   # Windows: venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
-# (Optional) Set Anthropic API key for AI-powered responses
+# (Optional) Set Google API key for AI-powered responses
 set GOOGLE_API_KEY=AIzaSyXXXX
 
 # Start chatbot server
