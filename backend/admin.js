@@ -1,13 +1,4 @@
-/**
- * reset-admin.js
- * Utility script to reset the admin user's password in the database.
- *
- * Usage:
- *   node reset-admin.js                        # resets to default: admin123
- *   node reset-admin.js mynewpassword          # resets to a custom password
- *
- * Run from the backend/ directory.
- */
+
 
 require('dotenv').config();
 const bcrypt = require('bcryptjs');

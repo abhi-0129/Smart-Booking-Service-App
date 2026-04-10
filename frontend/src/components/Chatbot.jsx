@@ -24,17 +24,11 @@ const Chatbot = () => {
     setInput('');
     setLoading(true);
 
-    try {
-      const res = await axios.post(`${CHATBOT_URL}/chat`, { message: text });
-      setMessages(prev => [...prev, { from: 'bot', text: res.data.reply }]);
-    } catch {
-      setMessages(prev => [...prev, { from: 'bot', text: "Sorry, I'm having trouble connecting right now. Please try again." }]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleKey = (e) => {
+    const res = await axios.post(
+  ` ${process.env.REACT_APP_CHATBOT_URL || 'http://localhost:8000'}/chat`,
+    { message: text }
+      );
+    const handleKey = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   };
 
