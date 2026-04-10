@@ -5,11 +5,28 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
+// ✅ Allowed origins
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://smart-booking-frontend-flame.vercel.app'
+];
+
+// ✅ CORS middleware (PRO LEVEL)
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,10 +41,14 @@ app.use('/api/admin', require('./routes/adminRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health check
-app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
+app.get('/api/health', (req, res) =>
+  res.json({ status: 'ok', time: new Date() })
+);
 
 // 404 fallback
-app.use((req, res) => res.status(404).json({ message: 'Route not found.' }));
+app.use((req, res) =>
+  res.status(404).json({ message: 'Route not found.' })
+);
 
 // Global error handler
 app.use((err, req, res, next) => {

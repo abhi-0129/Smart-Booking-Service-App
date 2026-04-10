@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
 );
 
--- Admin user (password: admin123) — is_active explicitly TRUE
+
 INSERT INTO users (name, email, password, role, is_active) VALUES
 (
   'Admin',
