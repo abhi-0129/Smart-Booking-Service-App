@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
-const CHATBOT_URL = process.env.REACT_APP_CHATBOT_URL || 'http://localhost:8000';
+const CHATBOT_URL = process.env.REACT_APP_CHATBOT_URL || 'https://innovative-gentleness-production.up.railway.app';
 
 const Chatbot = () => {
   const [open, setOpen] = useState(false);
