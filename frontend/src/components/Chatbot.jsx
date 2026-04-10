@@ -6,7 +6,7 @@ const CHATBOT_URL = process.env.REACT_APP_CHATBOT_URL || 'http://localhost:8000'
 const Chatbot = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: 'bot', text: "Hi! I'm your SmartBook assistant 👋 Ask me anything about booking services, pricing, or how the app works!" }
+    { from: 'bot', text: "Hi! I'm your SmartBook assistant 👋 Ask me anything about booking services!" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,6 +16,7 @@ const Chatbot = () => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, open]);
 
+  // ✅ FIXED send function
   const send = async () => {
     const text = input.trim();
     if (!text || loading) return;
@@ -24,12 +25,32 @@ const Chatbot = () => {
     setInput('');
     setLoading(true);
 
-    const res = await axios.post(
-  ` ${process.env.REACT_APP_CHATBOT_URL || 'http://localhost:8000'}/chat`,
-    { message: text }
+    try {
+      const res = await axios.post(
+        `${CHATBOT_URL}/chat`,
+        { message: text }
       );
-    const handleKey = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+
+      setMessages(prev => [
+        ...prev,
+        { from: 'bot', text: res.data.reply || "Sorry, I didn't understand." }
+      ]);
+    } catch (err) {
+      setMessages(prev => [
+        ...prev,
+        { from: 'bot', text: "Server error. Try again!" }
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ FIXED (अब बाहर है)
+  const handleKey = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      send();
+    }
   };
 
   return (
