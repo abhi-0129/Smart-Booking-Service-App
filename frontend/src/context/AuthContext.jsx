@@ -25,11 +25,15 @@ export const AuthProvider = ({ children }) => {
     setUnreadCount(0);
   }, [socket]);
 
-  // Setup socket when user logs in
+  // Socket URL from env — falls back to localhost for development
+  const SOCKET_URL = process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL.replace('/api', '')
+    : 'http://localhost:5000';
+
   useEffect(() => {
     if (!user?.token) return;
 
-    const s = io('http://localhost:5000', {
+    const s = io(SOCKET_URL, {
       auth: { token: user.token },
       transports: ['websocket'],
     });
@@ -38,13 +42,16 @@ export const AuthProvider = ({ children }) => {
     s.on('connect_error', (e) => console.warn('Socket error:', e.message));
 
     s.on('notification', (notif) => {
-      setNotifications(prev => [{ ...notif, id: Date.now(), is_read: false, created_at: new Date().toISOString() }, ...prev]);
+      setNotifications(prev => [
+        { ...notif, id: Date.now(), is_read: false, created_at: new Date().toISOString() },
+        ...prev
+      ]);
       setUnreadCount(prev => prev + 1);
     });
 
     setSocket(s);
     return () => s.disconnect();
-  }, [user?.token]);
+  }, [user?.token, SOCKET_URL]);
 
   const addNotification = (notif) => {
     setNotifications(prev => [notif, ...prev]);

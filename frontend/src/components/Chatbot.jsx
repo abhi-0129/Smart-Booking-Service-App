@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import './Chatbot.css';
+
+const CHATBOT_URL = process.env.REACT_APP_CHATBOT_URL || 'http://localhost:8000';
 
 const Chatbot = () => {
   const [open, setOpen] = useState(false);
@@ -24,7 +25,7 @@ const Chatbot = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:8000/chat', { message: text });
+      const res = await axios.post(`${CHATBOT_URL}/chat`, { message: text });
       setMessages(prev => [...prev, { from: 'bot', text: res.data.reply }]);
     } catch {
       setMessages(prev => [...prev, { from: 'bot', text: "Sorry, I'm having trouble connecting right now. Please try again." }]);
