@@ -1,0 +1,99 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 30, 0.55);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s var(--ease);
+}
+
+.modal {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 490px;
+  box-shadow: var(--shadow-xl);
+  animation: scaleIn 0.28s var(--ease-spring);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 26px 26px 0;
+}
+
+.modal-title {
+  font-size: 1.3rem;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+.modal-subtitle {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.modal-close {
+  background: var(--gray-100);
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 0.78rem;
+  transition: all var(--duration-fast);
+  flex-shrink: 0;
+}
+.modal-close:hover { background: var(--danger-bg); color: var(--danger); border-color: var(--danger); }
+
+.modal-service-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 26px;
+  padding: 14px 16px;
+  background: var(--cream-50);
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--cream-300);
+}
+
+.modal-service-img {
+  width: 68px; height: 68px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+
+.modal-service-provider { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+.modal-service-price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--green-700);
+  font-family: var(--font-display);
+}
+.modal-service-dur { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
+
+.modal-form {
+  padding: 0 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
