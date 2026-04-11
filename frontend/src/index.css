@@ -604,3 +604,179 @@ tbody tr:hover td { background: var(--cream-50); }
   color: var(--white);
   box-shadow: var(--shadow-green);
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+/* Auth pages - Login/Signup */
+@media (max-width: 768px) {
+  .auth-page {
+    flex-direction: column !important;
+  }
+
+  .auth-left-panel {
+    display: none !important;
+  }
+
+  .auth-right-panel {
+    width: 100% !important;
+    min-height: 100vh;
+    padding: 20px !important;
+  }
+
+  .auth-card {
+    padding: 24px 20px !important;
+    margin: 0 !important;
+  }
+
+  /* Sidebar - mobile mein top pe */
+  .page {
+    flex-direction: column !important;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    padding: 8px !important;
+  }
+
+  .sidebar-brand {
+    padding: 12px !important;
+  }
+
+  .sidebar-brand-name,
+  .sidebar-brand-role { display: none; }
+
+  .sidebar-nav {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    padding: 4px 8px !important;
+    gap: 4px !important;
+  }
+
+  .sidebar-item {
+    padding: 8px 10px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .sidebar-item-label {
+    display: none !important;
+  }
+
+  .sidebar-footer {
+    flex-direction: row !important;
+    padding: 8px 12px !important;
+    width: 100% !important;
+  }
+
+  .sidebar-user-email { display: none !important; }
+
+  /* Main content */
+  .main-content {
+    padding: 16px !important;
+  }
+
+  /* Grids */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Services grid */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Booking cards */
+  .booking-card {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  .booking-img {
+    width: 100% !important;
+    height: 160px !important;
+    border-radius: 8px !important;
+  }
+
+  .booking-actions {
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  /* Tables - scroll */
+  .table-wrapper {
+    overflow-x: auto !important;
+  }
+
+  table {
+    min-width: 600px !important;
+  }
+
+  /* Stat cards */
+  .stat-card {
+    padding: 16px !important;
+  }
+
+  .stat-value {
+    font-size: 1.5rem !important;
+  }
+
+  /* Page title */
+  .page-title {
+    font-size: 1.4rem !important;
+  }
+
+  /* Modal */
+  .modal {
+    margin: 16px !important;
+    max-width: calc(100% - 32px) !important;
+  }
+
+  /* Chatbot */
+  .chatbot-window {
+    width: calc(100vw - 32px) !important;
+    right: 0 !important;
+  }
+
+  .chatbot-wrapper {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+
+  /* Provider services grid */
+  .services-grid-provider {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Browse filters */
+  .browse-search {
+    max-width: 100% !important;
+  }
+
+  /* Role select */
+  .role-select {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .auth-card {
+    padding: 20px 16px !important;
+  }
+
+  .btn-lg {
+    padding: 12px 20px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .stat-value {
+    font-size: 1.3rem !important;
+  }
+}
