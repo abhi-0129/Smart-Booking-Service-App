@@ -1,13 +1,15 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL ,
+  baseURL: 'https://smart-booking-service-app-production.up.railway.app/api',
 });
 
 API.interceptors.request.use((config) => {
   try {
     const user = JSON.parse(localStorage.getItem('sbs_user'));
-    if (user?.token) config.headers.Authorization = `Bearer ${user.token}`;
+    if (user?.token) {
+      config.headers.Authorization = `Bearer ${user.token}`;
+    }
   } catch {}
   return config;
 });

@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (!user?.token) return;
 
-    const s = io(SOCKET_URL, {
+    const s = io('https://smart-booking-service-app-production.up.railway.app', {
       auth: { token: user.token },
       transports: ['websocket'],
     });
