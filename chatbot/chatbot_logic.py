@@ -9,7 +9,7 @@ try:
     genai.configure(api_key=os.environ.get("GOOGLE_API_KEY", ""))
     model = genai.GenerativeModel("gemini-1.5-flash")
 
-    USE_AI = bool(os.environ.get("AIzaSyDNNRoMZ6bYQJ-cpuVws4f5OSmXo8eKT-A"))
+    USE_AI = bool(os.environ.get("GOOGLE_API_KEY"))
 except ImportError:
     USE_AI = False
 
